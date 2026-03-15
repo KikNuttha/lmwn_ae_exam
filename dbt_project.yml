@@ -1,0 +1,24 @@
+name: 'lmwn_ae_exam'
+version: '2.0.0'
+config-version: 2
+
+profile: 'lmwn_ae_exam'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+target-path: "target"
+
+models:
+  lmwn_ae_exam:
+    staging:
+      + materialized: view
+      + schema: main
+    intermediate:
+      + materialized: view
+      + schema: main
+    marts:
+      + materialized: table
+      + schema: main
+    reports:
+      + materialized: table
+      + schema: main
