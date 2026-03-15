@@ -1,5 +1,5 @@
 with source as ( 
-    select distinct targeting_strategy
+    select *
     from {{ source('raw_data', 'campaign_master')}}
 ),
 
@@ -15,7 +15,7 @@ sg_mst_campaign as (
         budget::decimal(15, 2) as budget,
         trim(lower(cost_model)) as cost_model,
         trim(lower(targeting_strategy)) as targeting_strategy,
-        is_active::boolean as is_active,
+        is_active::boolean as is_active
     from source
 )
 

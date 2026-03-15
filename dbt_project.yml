@@ -12,13 +12,13 @@ models:
   lmwn_ae_exam:
     staging:
       +materialized:  view
-      +schema: main
+      # +schema: main
     intermediate:
       +materialized: view
-      +schema: main
+      # +schema: main
     marts:
       +materialized: table
-      +schema: main
+      # +schema: main
     reports:
       +materialized: table
-      +schema: main
+      # +schema: main

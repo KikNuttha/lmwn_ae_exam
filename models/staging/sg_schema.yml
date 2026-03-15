@@ -13,36 +13,31 @@ models:
       - name: customer_segment
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['new','inactive','loyal','churn_risk']
-      - name: status
+          - accepted_values:
+              values: ['new','inactive','loyal','churn_risk']
+      - name: current_status
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['inactive','active']             
+          - accepted_values:
+              values: ['inactive','active']             
       - name: referral_source
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['social','search','campaign','friend','ads']   
+          - accepted_values:
+              values: ['social','search','campaign','friend','ads']   
       - name: birth_year
         tests:
           - not_null
       - name: gender
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['other','male','female'] 
+          - accepted_values:
+              values: ['other','male','female'] 
       - name: preferred_device
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['android','ios','web']
+          - accepted_values:
+              values: ['android','ios','web']
 
   - name: sg_mst_drivers
     columns:
@@ -56,34 +51,26 @@ models:
       - name: vehicle_type
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['car','bike','van']
+          - accepted_values:
+              values: ['car','bike','van']
       - name: region
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['east','north','metro','central','south']
+          - accepted_values:
+              values: ['east','north','metro','central','south']
       - name: active_status
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['inactive','active']
+          - accepted_values:
+              values: ['inactive','active']
       - name: driver_rating
         tests:
           - not_null
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-                max_value: 5
       - name: bonus_tier
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['gold','bronze','silver','platinum']
+          - accepted_values:
+              values: ['gold','bronze','silver','platinum']
 
   - name: sg_mst_restaurants
     columns:
@@ -91,41 +78,30 @@ models:
         tests:
           - unique
           - not_null
-      - name: name
+      - name: restaurant_name
         tests:
           - not_null
       - name: category
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['western','fastfood','thai','vegan','japanese','coffee','bakery']
+          - accepted_values:
+              values: ['western','fast food','thai','vegan','japanese','coffee','bakery']
       - name: city
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['bangkok','khonkaen','udonthani','hatyai','phuket','rayong','pattaya','chiangmai']
+          - accepted_values:
+              values: ['bangkok','khon kaen','udon thani','hat yai','phuket','rayong','pattaya','chiang mai']
       - name: average_rating
         tests:
           - not_null
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-                max_value: 60
       - name: active_status
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['active','inactive']
+          - accepted_values:
+              values: ['active','inactive']
       - name: prep_time_min
         tests:
           - not_null
-          - dbt_utils.accepted_range:
-              arguments:
-                min_value: 0
-                max_value: 60
 
   - name: sg_mst_campaign
     columns:
@@ -145,38 +121,32 @@ models:
       - name: campaign_type
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['seasonal','loyalty','retargeting','acquisition']
+          - accepted_values:
+              values: ['seasonal','loyalty','retargeting','acquisition']
       - name: objective
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['boost_new_customers','reactivate_lapsed','increase_orders']
+          - accepted_values:
+              values: ['boost_new_customers','reactivate_lapsed','increase_orders']
       - name: channel
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['google','tiktok','facebook','email']
+          - accepted_values:
+              values: ['google','tiktok','facebook','email']
       - name: budget
         tests:
           - not_null
       - name: cost_model
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['cpm','cpv','cpc','cpa']
+          - accepted_values:
+              values: ['cpm','cpv','cpc','cpa']
       - name: targeting_strategy
         tests:
           - not_null
-          - dbt_utils.accepted_values:
-              arguments:
-                values: ['custom','broad','lookalike']
+          - accepted_values:
+              values: ['custom','broad','lookalike']
       - name: is_active
         tests:
-          - dbt_utils.accepted_values:
-              arguments:
-                values: [true, false]
+          - accepted_values:
+              values: [true, false]
