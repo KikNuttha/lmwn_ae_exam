@@ -11,14 +11,14 @@ target-path: "target"
 models:
   lmwn_ae_exam:
     staging:
-      + materialized: view
-      + schema: main
+      +materialized:  view
+      +schema: main
     intermediate:
-      + materialized: view
-      + schema: main
+      +materialized: view
+      +schema: main
     marts:
-      + materialized: table
-      + schema: main
+      +materialized: table
+      +schema: main
     reports:
-      + materialized: table
-      + schema: main
+      +materialized: table
+      +schema: main

@@ -10,7 +10,7 @@ sg_mst_drivers as (
          trim(lower(vehicle_type)) as vehicle_type,
          trim(lower(region)) as region,
          trim(lower(active_status)) as active_status,
-         driver_rating,
+         driver_rating::decimal(3, 2) as driver_rating,
          trim(lower(bonus_tier)) as bonus_tier
     from source
 )

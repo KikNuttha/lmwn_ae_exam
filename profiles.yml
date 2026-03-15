@@ -3,4 +3,4 @@ lmwn_ae_exam:
   outputs:
     dev:
       type: duckdb
-      path: 'data/ae_exam_db.duckdb'
+      path: D:\Gik\lmwn_ae_exam\data\ae_exam_db.duckdb
