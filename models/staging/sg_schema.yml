@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: sg_mst_customers
+    columns:
+      - name: customer_id 
+        tests:
+          - unique
+          - not_null
+      - name: signup_date
+        tests:
+          - not_null
+      - name: customer_segment
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['new','inactive','loyal','churn_risk']
+      - name: status
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['inactive','active']             
+      - name: referral_source
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['social','search','campaign','friend','ads']   
+      - name: birth_year
+        tests:
+          - not_null
+      - name: gender
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['other','male','female'] 
+      - name: preferred_device
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['android','ios','web']

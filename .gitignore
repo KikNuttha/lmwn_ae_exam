@@ -9,3 +9,4 @@ dbt_modules/
 .DS_Store
 venv/
 __pycache__/
+dbt_internal_packages/

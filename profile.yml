@@ -1,8 +1,0 @@
-lmwn_ae_exam:
-  target: dev
-  outputs:
-    dev:
-      type: duckdb
-      path: 'data/ae_exam_db.duckdb'
-      extensions:
-        - httpfs

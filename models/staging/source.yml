@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: raw_data
+    schema: main
+    tables:
+      - name: customers_master
+      - name: drivers_master
+      - name: restaurants_master
+      - name: campaign_master
+      - name: order_transactions
+      - name: support_tickets
+      - name: support_ticket_status_logs
+      - name: campaign_interactions
+      - name: order_status_logs
+      - name: driver_incentive_logs
+      - name: customer_app_sessions
