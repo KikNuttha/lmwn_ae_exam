@@ -17,5 +17,5 @@ select
 from source
 )
 
-select distinct region
+select *
 from sg_log_driver_incentive
