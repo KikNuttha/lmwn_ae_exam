@@ -336,3 +336,39 @@ models:
       - name: updated_by
         tests:
           - not_null
+
+  - name: sg_log_driver_incentive
+    columns:
+      - name: log_id
+        tests:
+          - unique
+          - not_null
+      - name: driver_id
+        tests:
+          - not_null
+      - name: incentive_program
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['rainy_day', 'weekly_bonus','holiday_special']
+      - name: bonus_amount
+        tests:
+          - not_null
+      - name: applied_date
+        tests:
+          - not_null
+      - name: delivery_target
+        tests:
+          - not_null
+      - name: actual_deliveries
+        tests:
+          - not_null
+      - name: bonus_qualified
+        tests:
+          - accepted_values:
+              values: [true, false]
+      - name: region
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['north', 'metro','south','east','central']
