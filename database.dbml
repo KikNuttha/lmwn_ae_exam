@@ -1,0 +1,163 @@
+TableGroup Staging_Layer {
+  customers_master //sg_mst_customers
+  drivers_master //sg_mst_drivers
+  restaurants_master //sg_mst_restaurants
+  campaign_master //sg_mst_campaign
+  order_transactions //sg_trn_order
+  support_tickets //sg_trn_support_tickets
+  support_ticket_status_logs //sg_log_support_tickets
+  campaign_interactions //sg_log_camp_interac
+  order_status_logs //sg_log_order
+  driver_incentive_logs //sg_log_driver_incentive
+  customer_app_sessions //sg_log_cus_app_sessions
+}
+
+Table customers_master {
+    customer_id varchar [primary key]
+    signup_date date
+    customer_segment varchar
+    current_status varchar
+    referral_source varchar
+    birth_year integer
+    gender varchar
+    preferred_device varchar
+}
+
+Table drivers_master {
+    driver_id varchar [primary key]
+    join_date date
+    vehicle_type varchar
+    region varchar
+    active_status varchar
+    driver_rating decimal(18,2)
+    bonus_tier varchar
+}
+
+Table restaurants_master {
+    restaurant_id varchar [primary key]
+    restaurant_name varchar
+    category varchar
+    city varchar
+    average_rating decimal(18,2)
+    active_status varchar
+    prep_time_min integer    
+}
+
+Table campaign_master {
+    campaign_id varchar [primary key]
+    campaign_name varchar
+    start_dt date
+    end_dt date
+    campaign_type varchar
+    objective varchar
+    channel varchar
+    budget decimal(18,2)
+    cost_model varchar
+    targeting_strategy varchar
+    is_active boolean
+}
+
+Table order_transactions {
+    order_id varchar [primary key]
+    customer_id varchar
+    restaurant_id varchar
+    driver_id varchar
+    order_datetime timestamp
+    pickup_datetime timestamp
+    delivery_datetime timestamp
+    order_status varchar
+    delivery_zone varchar
+    total_amount decimal(18,2)
+    payment_method varchar
+    is_late_delivery boolean
+    delivery_distance_km decimal(18,2)
+}
+
+Table support_tickets {
+    ticket_id varchar [primary key]
+    order_id varchar
+    customer_id varchar
+    driver_id varchar
+    restaurant_id varchar 
+    issue_type varchar
+    issue_sub_type varchar
+    channel varchar
+    opened_datetime timestamp
+    resolved_datetime timestamp
+    current_status varchar
+    csat_score decimal(18,2)
+    compensation_amount decimal(18,2)
+    resolved_by_agent_id varchar
+}
+
+Table support_ticket_status_logs {
+    ticket_id varchar [primary key]
+    action_status varchar
+    status_datetime timestamp
+    agent_id varchar
+}
+
+Table campaign_interactions {
+    interaction_id varchar [primary key]
+    campaign_id varchar
+    customer_id varchar
+    interaction_dt timestamp
+    event_type varchar
+    platform varchar
+    device_type varchar
+    ad_cost varchar
+    order_id varchar
+    is_new_customer boolean
+    revenue decimal(18,2)
+    session_id varchar
+}
+
+Table order_status_logs {
+    order_id varchar [primary key]
+    order_status varchar
+    status_datetime timestamp
+    updated_by varchar
+}
+
+
+Table driver_incentive_logs {
+    log_id integer [primary key]
+    driver_id varchar
+    incentive_program varchar
+    bonus_amount decimal(18,2)
+    applied_date date
+    delivery_target integer
+    actual_deliveries integer
+    bonus_qualified boolean
+    region varchar
+} 
+
+Table customer_app_sessions {
+    session_id varchar [primary key]
+    customer_id varchar
+    session_start timestamp
+    session_end timestamp
+    device_type varchar
+    os_version decimal(18,2)
+    app_version varchar
+    city varchar
+}
+
+// --- Core Transactions ---
+Ref: customers_master.customer_id < order_transactions.customer_id
+Ref: drivers_master.driver_id < order_transactions.driver_id
+Ref: restaurants_master.restaurant_id < order_transactions.restaurant_id
+
+// --- Logs & Details ---
+Ref: order_transactions.order_id < order_status_logs.order_id
+Ref: drivers_master.driver_id < driver_incentive_logs.driver_id
+Ref: customers_master.customer_id < customer_app_sessions.customer_id
+
+// --- Marketing Attribution ---
+Ref: campaign_master.campaign_id < campaign_interactions.campaign_id
+Ref: customers_master.customer_id < campaign_interactions.customer_id
+Ref: order_transactions.order_id < campaign_interactions.order_id 
+
+// --- Support Tickets ---
+Ref: order_transactions.order_id < support_tickets.order_id
+Ref: support_tickets.ticket_id < support_ticket_status_logs.ticket_id

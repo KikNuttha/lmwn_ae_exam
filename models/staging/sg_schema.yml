@@ -373,7 +373,6 @@ models:
           - accepted_values:
               values: ['north', 'metro','south','east','central']
 
-
   - name: sg_log_cus_app_sessions
     columns:
       - name: session_id
@@ -400,6 +399,6 @@ models:
       - name: app_version
         tests:
           - not_null
-      - name: city
+      - name: city 
         tests:
           - not_null

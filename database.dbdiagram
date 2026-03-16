@@ -1,0 +1,77 @@
+{
+  "version": "1.0.0",
+  "darkMode": true,
+  "gridEnabling": false,
+  "detailLevel": "All",
+  "tablePositions": [
+    {
+      "name": "customers_master",
+      "schemaName": "public",
+      "x": 12,
+      "y": 12
+    },
+    {
+      "name": "drivers_master",
+      "schemaName": "public",
+      "x": 12,
+      "y": 346
+    },
+    {
+      "name": "restaurants_master",
+      "schemaName": "public",
+      "x": 12,
+      "y": 648
+    },
+    {
+      "name": "campaign_master",
+      "schemaName": "public",
+      "x": 12,
+      "y": 950
+    },
+    {
+      "name": "order_transactions",
+      "schemaName": "public",
+      "x": 548.806640625,
+      "y": 346
+    },
+    {
+      "name": "support_tickets",
+      "schemaName": "public",
+      "x": 1088.09814453125,
+      "y": 12
+    },
+    {
+      "name": "support_ticket_status_logs",
+      "schemaName": "public",
+      "x": 1512.3039032478084,
+      "y": 12
+    },
+    {
+      "name": "campaign_interactions",
+      "schemaName": "public",
+      "x": 1088.09814453125,
+      "y": 744
+    },
+    {
+      "name": "order_status_logs",
+      "schemaName": "public",
+      "x": 1088.09814453125,
+      "y": 538
+    },
+    {
+      "name": "driver_incentive_logs",
+      "schemaName": "public",
+      "x": 548.806640625,
+      "y": 841
+    },
+    {
+      "name": "customer_app_sessions",
+      "schemaName": "public",
+      "x": 548.806640625,
+      "y": 12
+    }
+  ],
+  "tableGroupCollapseStates": [],
+  "stickyNoteLayouts": [],
+  "referencePaths": []
+}
