@@ -372,3 +372,34 @@ models:
           - not_null
           - accepted_values:
               values: ['north', 'metro','south','east','central']
+
+
+  - name: sg_log_cus_app_sessions
+    columns:
+      - name: session_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+      - name: session_start
+        tests:
+          - not_null
+      - name: session_end
+        tests:
+          - not_null
+      - name: device_type
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['android', 'ios','web']
+      - name: os_version
+        tests:
+          - not_null
+      - name: app_version
+        tests:
+          - not_null
+      - name: city
+        tests:
+          - not_null
