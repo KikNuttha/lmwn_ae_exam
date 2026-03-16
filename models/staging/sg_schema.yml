@@ -254,3 +254,20 @@ models:
       - name: resolved_by_agent_id
         tests:
           - not_null
+  
+  - name: sg_log_support_tickets
+    columns:
+      - name: ticket_id
+        tests:
+          - not_null
+      - name: action_status
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['opened','resolved']
+      - name: status_datetime
+        tests:
+          - not_null
+      - name: agent_id
+        tests:
+          - not_null

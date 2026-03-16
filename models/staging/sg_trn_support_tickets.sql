@@ -22,5 +22,3 @@ select
 from source
 )
  select * from sg_trn_support_tickets
-
---  describe select * FROM {{ source('raw_data', 'support_tickets')}}
