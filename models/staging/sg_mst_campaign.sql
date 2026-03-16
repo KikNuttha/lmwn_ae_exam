@@ -12,7 +12,7 @@ sg_mst_campaign as (
         trim(lower(campaign_type)) as campaign_type,
         trim(lower(objective)) as objective,
         trim(lower(channel)) as channel,
-        budget::decimal(15, 2) as budget,
+        COALESCE(CAST(budget AS DECIMAL(18, 2)), 0) as budget,
         trim(lower(cost_model)) as cost_model,
         trim(lower(targeting_strategy)) as targeting_strategy,
         is_active::boolean as is_active

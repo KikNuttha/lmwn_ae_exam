@@ -150,3 +150,53 @@ models:
         tests:
           - accepted_values:
               values: [true, false]
+
+  - name: sg_trn_order
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+      - name: restaurant_id
+        tests:
+          - not_null
+      - name: driver_id
+        tests:
+          - not_null
+      - name: order_datetime
+        tests:
+          - not_null
+      - name: pickup_datetime
+        tests:
+          - not_null   
+      - name: delivery_datetime
+        tests:
+          - not_null
+      - name: order_status
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['failed','completed','canceled']
+      - name: delivery_zone
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['south','east','central','north']
+      - name: total_amount
+        tests:
+          - not_null
+      - name: payment_method
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['mobile_wallet','cash','credit_card']
+      - name: is_late_delivery
+        tests:
+          - accepted_values:
+              values: [true, false]
+      - name: delivery_distance_km
+        tests:
+          - not_null

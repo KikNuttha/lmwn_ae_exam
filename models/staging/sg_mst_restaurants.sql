@@ -9,9 +9,9 @@ sg_mst_restaurants as (
         trim(lower("name")) as restaurant_name,
         trim(lower(category)) as category,
         trim(lower(city)) as city,
-        average_rating::decimal(3, 2) as average_rating,
+        COALESCE(CAST(average_rating AS DECIMAL(18, 2)), 0) as average_rating,
         trim(lower(active_status)) as active_status,
-        prep_time_min::integer as prep_time_min
+        COALESCE(CAST(prep_time_min AS INT), 0) as  prep_time_min
     from source
 )
 
