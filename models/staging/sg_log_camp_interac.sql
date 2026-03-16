@@ -20,5 +20,5 @@ select
 from source
 )
 
-select distinct device_type
+select *
 from sg_log_camp_interac

@@ -319,3 +319,20 @@ models:
       - name: session_id
         tests:
           - not_null
+
+  - name: sg_log_order
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+      - name: order_status
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['picked_up', 'failed','completed','created','accepted','canceled']
+      - name: status_datetime
+        tests:
+          - not_null
+      - name: updated_by
+        tests:
+          - not_null
