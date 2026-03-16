@@ -10,7 +10,7 @@ sg_mst_customers as (
         trim(lower(customer_segment)) as customer_segment,
         trim(lower("status")) as current_status,
         trim(lower(referral_source)) as referral_source,
-        birth_year::integer as birth_year,
+        COALESCE(CAST(birth_year AS INT), 0) as birth_year,
         trim(lower(gender)) as gender,
         trim(lower(preferred_device)) as preferred_device
     from source

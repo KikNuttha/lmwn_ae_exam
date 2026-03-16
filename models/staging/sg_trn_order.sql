@@ -20,5 +20,5 @@ select
     COALESCE(CAST(delivery_distance_km AS DECIMAL(18, 2)), 0) as delivery_distance_km
 from source
 )
- select distinct payment_method
+ select *
  from sg_trn_order
