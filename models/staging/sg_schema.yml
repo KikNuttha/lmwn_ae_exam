@@ -271,3 +271,51 @@ models:
       - name: agent_id
         tests:
           - not_null
+
+  - name: sg_log_camp_interac
+    columns:
+      - name: interaction_id
+        tests:
+          - unique
+          - not_null
+      - name: campaign_id
+        tests:
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+      - name: interaction_dt
+        tests:
+          - not_null
+      - name: event_type
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['impression','click','conversion']
+      - name: platform
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['tiktok','facebook','google']
+      - name: device_type
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['web','android','ios']
+      - name: ad_cost
+        tests:
+          - not_null
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: is_new_customer
+        tests:
+          - accepted_values:
+              values: [true, false]
+      - name: revenue
+        tests:
+          - not_null
+      - name: session_id
+        tests:
+          - not_null
