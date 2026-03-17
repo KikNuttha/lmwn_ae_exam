@@ -13,10 +13,10 @@ campaign_metrics as (
         sum(ad_cost) as total_spend,
         sum(revenue) as total_revenue,
         sum(revenue)-sum(ad_cost) as total_benefit,
-        count(distinct case 
+        coalesce(count(distinct case 
             when event_type = 'conversion' and is_new_customer = TRUE 
             then customer_id 
-        end) as acquired_new_customers
+        end)) as acquired_new_customers
     from intermediate_data
     group by 1, 2, 3
 )
@@ -25,11 +25,11 @@ select
     *,
     case 
         when total_spend > 0 then round((total_revenue / total_spend),2) 
-        else 0 
+        else 0
     end as roas,
     case 
         when acquired_new_customers > 0 then round((total_spend / acquired_new_customers),2)
-        else null
+        else 0
     end as cac
 
 from campaign_metrics
