@@ -1,9 +1,9 @@
 with acquisition as (
-    select * from {{ ref('int_customer_acquisition') }}
+    select * from {{ ref('model_int_customer_acquisition') }}
     ),
 
     campaign as (
-        select * from {{ ref('sg_mst_campaign') }}
+        select * from {{ ref('model_sg_mst_campaign') }}
     ),
 
     customer_acquisition as (

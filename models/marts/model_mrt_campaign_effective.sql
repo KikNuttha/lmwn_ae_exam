@@ -1,5 +1,5 @@
 with intermediate_data as (
-    select * from {{ ref('int_marketing_attribution') }}
+    select * from {{ ref('model_int_marketing_attribution') }}
 ),
 
 campaign_metrics as (

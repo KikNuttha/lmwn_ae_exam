@@ -1,10 +1,10 @@
 -- For Campaign Effectiveness Report --
 with campaign as (
-    select * from {{ ref('sg_mst_campaign') }}
+    select * from {{ ref('model_sg_mst_campaign') }}
 ),
 
 interactions as (
-    select * from {{ ref('sg_log_camp_interac') }}
+    select * from {{ ref('model_sg_log_camp_interac') }}
 ),
 
 attribution as (

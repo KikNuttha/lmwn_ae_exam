@@ -1,9 +1,9 @@
 with interactions as (
-    select * from {{ ref('sg_log_camp_interac') }}
+    select * from {{ ref('model_sg_log_camp_interac') }}
     ),
 
     orders as (
-    select * from {{ref('sg_trn_order')}}
+    select * from {{ref('model_sg_trn_order')}}
     ),
 
     acquisition as (
