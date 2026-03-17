@@ -69,3 +69,25 @@ This model serves as the granular enrichment layer for driver activities. It con
 | **avg_recent_csat** | AVG(csat_score) attributed to the driver. | **Feedback provided by customers**. |
 
 ---
+
+## Delivery Zone Heatmap Report
+### 1. Intermediate Layer: `model_int_delivery_zone_metrics`
+**Description:** This model prepares order-level geographic metrics by joining transaction data with restaurant locations and status logs to identify operational bottlenecks.
+*   **Primary Logic:** Joins `model_sg_trn_order` with `model_sg_mst_restaurants` (to attribute orders to a `city`) and `model_sg_log_order` (to determine the lifecycle of canceled orders).
+
+### 2. Mart Layer: `model_mrt_delivery_zone_heatmap`
+**Description:** A summarized table aggregated by **Zone** and **City**, designed for BI Heatmap visualizations to identify high-demand or low-efficiency areas.
+*   **Grain:** `delivery_zone` + `city`.
+*   **Objective:** To monitor spatial efficiency and driver availability ratios.
+
+### 📊 Metric Definitions & Requirement Mapping
+| Metric Name | Logic / Description | Required Insight Met |
+| :--- | :--- | :--- |
+| **total_delivery_requests** | `COUNT(order_id)` | **Total volume** of deliveries requested per zone. |
+| **completion_rate_pct** | % of orders with `order_status = 'completed'` | **Completion rates** within each area. |
+| **avg_delivery_time_min** | `AVG(total_delivery_time_min)` | **Average delivery time** in different areas. |
+| **no_driver_cancel_rate_pct** | % of orders where `is_canceled_no_driver = 1` | **Areas with high job rejection** due to unavailable drivers. |
+| **driver_to_request_ratio** | `COUNT(DISTINCT driver_id) / COUNT(order_id)` | **Ratio of drivers available** to delivery requests (Supply vs. Demand). |
+| **late_delivery_rate_pct**| % of orders where `is_late_delivery = 'TRUE'` | **Delivery speed vs expectations** per zone. |
+
+---
