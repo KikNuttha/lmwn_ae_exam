@@ -23,5 +23,7 @@ select
         else 0 
     end as is_resolved,
     compensation_amount,
-    cast(opened_datetime as date) as opened_date
+    cast(opened_datetime as date) as opened_date,
+    month(opened_datetime) as opened_date_mm,
+    year(opened_datetime) as opened_date_yyyy
 from raw_tickets
