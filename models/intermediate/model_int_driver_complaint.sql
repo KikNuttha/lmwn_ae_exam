@@ -21,4 +21,4 @@ select
 from raw_tickets t
 left join drivers d 
     on t.driver_id = d.driver_id
-where (t.issue_type != 'payment' and t.issue_sub_type != 'refund') and (t.issue_type != 'food' and t.issue_sub_type != 'cold')
+where t.issue_type not in ('payment','food')
