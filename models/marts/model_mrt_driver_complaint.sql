@@ -36,7 +36,6 @@ select
 
     --Complaint section--
     count(c.ticket_id) as total_complaints,
-    -- s.all_reported_issues, 
     round(avg(c.resolution_time_min), 2) as avg_resolution_time_min,
     s.issue_rank,
     s.issue_sub_type,
