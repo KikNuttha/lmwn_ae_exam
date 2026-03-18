@@ -4,6 +4,8 @@ with complaint_metrics as (
 
 select
     opened_date,
+    opened_date_mm,
+    opened_date_yyyy,
     issue_type,
     issue_sub_type,
     count(ticket_id) as total_tickets,
@@ -12,5 +14,5 @@ select
     sum(compensation_amount) as total_compensation_issued,
     round(sum(compensation_amount) / nullif(count(ticket_id), 0), 2) as avg_compensation_per_ticket
 from complaint_metrics
-group by 1, 2, 3
+group by 1, 2, 3, 4, 5
 order by cast(opened_date as date) desc, total_tickets desc
