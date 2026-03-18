@@ -119,3 +119,33 @@ A reporting-ready table aggregated by **Date** and **Issue Category**. This tabl
 | **avg_compensation_per_ticket** | (Resolved Tickets / Total Tickets) * 100 | Effectiveness of the response process. |
 
 ---
+
+## Driver-Related Complaints Report
+### 1. Intermediate Layer: `model_int_driver_complaint`
+**Description:**  
+This model enriches raw support ticket data by filtering for driver-specific issues and joining them with driver metadata to create a comprehensive view of each incident.
+
+*   **Primary Logic:**
+    *   Filters **`sg_trn_support_tickets`** to include only `issue_type` related to 'rider' or 'delivery'.
+    *   Joins with **`sg_mst_drivers`** to retrieve the `driver_rating` (baseline rating before complaints) and vehicle metadata.
+*   **Technical Logic (DuckDB):**
+    *   **Resolution Speed:** Calculates the duration in minutes between `opened_datetime` and `resolved_datetime` using the **`date_diff`** function.
+    *   **Post-Complaint Feedback:** Captures the **`csat_score`** from the support ticket as the primary "after" metric.
+
+### 2. Mart Layer: `model_mrt_driver_complaint`
+**Description:**  
+A reporting-ready table aggregated at the **Driver level**. It provides the high-level metrics needed to evaluate driver reliability and prioritize training resources.
+
+#### 📊 Metric Definitions & Requirement Mapping
+
+| Metric Name | Logic / Description | Required Insight Met |
+| :--- | :--- | :--- |
+| **baseline_rating** | Value from `sg_mst_drivers.driver_rating` | **Driver ratings before complaints**. |
+| **total_complaints** | `COUNT(ticket_id)` | **Frequency of complaints** tied to specific drivers. |
+| **avg_resolution_time_min**| `AVG(resolution_time_min)` | **Time required to resolve** driver-related cases. |
+| **issue_rank**| `ROW_NUMBER() partitioned by driver, ordered by frequency (DESC) and CSAT (ASC)` | Identification of behavioral issues for **prioritized training**|
+| **sub_type_count**| The number of occurrences for a specific issue category for that driver. | Granular tracking of recurring performance issues|
+| **avg_post_complaint_csat**| `AVG(csat_score)` | **Customer satisfaction scores** following resolution. |
+| **complaint_to_order_ratio**| (Total Complaints / Total Orders) * 100 | **Ratio of complaints** to total orders handled. |
+
+---
