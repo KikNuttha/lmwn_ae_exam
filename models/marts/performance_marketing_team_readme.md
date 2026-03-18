@@ -149,3 +149,21 @@ A reporting-ready table aggregated at the **Driver level**. It provides the high
 | **complaint_to_order_ratio**| (Total Complaints / Total Orders) * 100 | **Ratio of complaints** to total orders handled. |
 
 ---
+
+## **Restaurant Quality Complaint Report**
+### **1. Intermediate Layer: `model_int_restaurant_complaint`**
+**Description:** This model filters and prepares base data specifically for complaints associated with restaurants.
+
+*   **Primary Logic:** Filters data from **`sg_trn_support_tickets`** by selecting only `issue_type = 'food'`.
+*   **Duration Calculation:** Calculates **Resolution Time** using the `date_diff` function to find the difference between `opened_datetime` and `resolved_datetime` in minutes [16, 27, Conversation History].
+
+### **2. Mart Layer: `model_mrt_restaurant_quality`**
+#### **📊 Metric Definitions & Requirement Mapping**
+
+| Metric Name | Logic / Description | Required Insight Met |
+| :--- | :--- | :--- |
+| **volume_of_complaints** | `COUNT(DISTINCT ticket_id)` | **Volume of complaints** linked to individual restaurants. |
+| **avg_resolution_time_min**| `AVG(resolution_time_min)` | **Time to resolve** restaurant-related issues. |
+| **total_compensation_issued** | `SUM(compensation_amount)` | **Total customer compensation** linked to each restaurant. |
+| **complaint_to_order_ratio_pct**| (Total Complaints / Total Orders) * 100 | **Ratio of complaints** to total orders from the restaurant. |
+| **customer_recovery_rate_30d_pct** | % of customers reordering within 30 days post-resolution | **Impact on repeat purchase behavior** from customers after issues. |
