@@ -91,3 +91,31 @@ This model serves as the granular enrichment layer for driver activities. It con
 | **late_delivery_rate_pct**| % of orders where `is_late_delivery = 'TRUE'` | **Delivery speed vs expectations** per zone. |
 
 ---
+
+## Complaint Summary Dashboard
+### 1. Intermediate Layer: `model_int_complaint`
+**Description:**  
+This model serves as the granular enrichment layer for customer support requests. It calculates operational metrics at the individual ticket level, specifically focusing on resolution speed and categorization.
+
+*   **Primary Logic:**
+    *   **Resolution Time Calculation:** Uses the `date_diff` function to calculate the duration in minutes between `opened_datetime` and `resolved_datetime`.
+    *   **Status Identification:** Identifies "unresolved" tickets where the `current_status` is not marked as 'resolved'.
+
+### 2. Mart Layer: `model_mrt_complaint_summary`
+**Description:**  
+A reporting-ready table aggregated by **Date** and **Issue Category**. This table is optimized for BI tools to visualize complaint trends and financial remediation costs.
+
+*   **Grain:** `opened_date` + `issue_type` + `issue_sub_type`.
+*   **Objective:** To summarize support performance and identify recurring service quality issues.
+
+#### 📊 Metric Definitions & Requirement Mapping
+
+| Metric Name | Logic / Description | Required Insight Met |
+| :--- | :--- | :--- |
+| **total_tickets** | `COUNT(ticket_id)` | **Total number of issues** reported. |
+| **total_unresolved** | `SUM(is_unresolved)` | **Volume of unresolved** or escalated tickets. |
+| **avg_resolution_time_min** | `AVG(resolution_time_min)` | **Time taken on average** to resolve an issue. |
+| **total_compensation_issued** | `SUM(compensation_amount)` | **Compensation or refunds** issued. |
+| **avg_compensation_per_ticket** | (Resolved Tickets / Total Tickets) * 100 | Effectiveness of the response process. |
+
+---
