@@ -1,8 +1,4 @@
-# Performance Marketing Team
-
-This folder contains the models responsible for transforming raw campaign data into actionable insights for the **Performance Marketing Team**.
-
-## Campaign Effectiveness Report
+# 1️⃣ Campaign Effectiveness Report
 ### 1. Intermediate Layer: `model_int_marketing_attribution`
 **Description:** 
 This model acts as the central enrichment layer for all marketing activities. It links campaign metadata with raw interaction logs to attribute user actions to specific campaigns.
@@ -27,7 +23,7 @@ This model acts as the central enrichment layer for all marketing activities. It
 
 ---
 
-## Customer Acquisition Report
+# 2️⃣ Customer Acquisition Report
 ### 1. Intermediate Layer: `model_int_customer_acquisition`
 **Description:** 
 Identifies new customers and prepares behavioral metrics by linking marketing conversions with order history.
@@ -47,7 +43,7 @@ Identifies new customers and prepares behavioral metrics by linking marketing co
 
 ---
 
-## Driver Performance Report
+# 3️⃣ Driver Performance Report
 ### 1. Intermediate Layer: `model_int_driver_order`
 **Description:** 
 This model serves as the granular enrichment layer for driver activities. It consolidates the lifecycle of an order—from creation to completion or cancellation—into a single table at the order grain.
@@ -70,16 +66,12 @@ This model serves as the granular enrichment layer for driver activities. It con
 
 ---
 
-## Delivery Zone Heatmap Report
+# 4️⃣ Delivery Zone Heatmap Report
 ### 1. Intermediate Layer: `model_int_delivery_zone_metrics`
 **Description:** This model prepares order-level geographic metrics by joining transaction data with restaurant locations and status logs to identify operational bottlenecks.
 *   **Primary Logic:** Joins `model_sg_trn_order` with `model_sg_mst_restaurants` (to attribute orders to a `city`) and `model_sg_log_order` (to determine the lifecycle of canceled orders).
 
 ### 2. Mart Layer: `model_mrt_delivery_zone_heatmap`
-**Description:** A summarized table aggregated by **Zone** and **City**, designed for BI Heatmap visualizations to identify high-demand or low-efficiency areas.
-*   **Grain:** `delivery_zone` + `city`.
-*   **Objective:** To monitor spatial efficiency and driver availability ratios.
-
 ### 📊 Metric Definitions & Requirement Mapping
 | Metric Name | Logic / Description | Required Insight Met |
 | :--- | :--- | :--- |
@@ -92,7 +84,7 @@ This model serves as the granular enrichment layer for driver activities. It con
 
 ---
 
-## Complaint Summary Dashboard
+# 5️⃣ Complaint Summary Dashboard
 ### 1. Intermediate Layer: `model_int_complaint`
 **Description:**  
 This model serves as the granular enrichment layer for customer support requests. It calculates operational metrics at the individual ticket level, specifically focusing on resolution speed and categorization.
@@ -102,14 +94,7 @@ This model serves as the granular enrichment layer for customer support requests
     *   **Status Identification:** Identifies "unresolved" tickets where the `current_status` is not marked as 'resolved'.
 
 ### 2. Mart Layer: `model_mrt_complaint_summary`
-**Description:**  
-A reporting-ready table aggregated by **Date** and **Issue Category**. This table is optimized for BI tools to visualize complaint trends and financial remediation costs.
-
-*   **Grain:** `opened_date` + `issue_type` + `issue_sub_type`.
-*   **Objective:** To summarize support performance and identify recurring service quality issues.
-
 #### 📊 Metric Definitions & Requirement Mapping
-
 | Metric Name | Logic / Description | Required Insight Met |
 | :--- | :--- | :--- |
 | **total_tickets** | `COUNT(ticket_id)` | **Total number of issues** reported. |
@@ -118,9 +103,8 @@ A reporting-ready table aggregated by **Date** and **Issue Category**. This tabl
 | **total_compensation_issued** | `SUM(compensation_amount)` | **Compensation or refunds** issued. |
 | **avg_compensation_per_ticket** | (Resolved Tickets / Total Tickets) * 100 | Effectiveness of the response process. |
 
----
-
-## Driver-Related Complaints Report
+---  
+# 6️⃣ Driver-Related Complaints Report
 ### 1. Intermediate Layer: `model_int_driver_complaint`
 **Description:**  
 This model enriches raw support ticket data by filtering for driver-specific issues and joining them with driver metadata to create a comprehensive view of each incident.
@@ -128,16 +112,11 @@ This model enriches raw support ticket data by filtering for driver-specific iss
 *   **Primary Logic:**
     *   Filters **`sg_trn_support_tickets`** to include only `issue_type` related to 'rider' or 'delivery'.
     *   Joins with **`sg_mst_drivers`** to retrieve the `driver_rating` (baseline rating before complaints) and vehicle metadata.
-*   **Technical Logic (DuckDB):**
-    *   **Resolution Speed:** Calculates the duration in minutes between `opened_datetime` and `resolved_datetime` using the **`date_diff`** function.
     *   **Post-Complaint Feedback:** Captures the **`csat_score`** from the support ticket as the primary "after" metric.
+    *   **Resolution Speed:** Calculates the duration in minutes between `opened_datetime` and `resolved_datetime` using the **`date_diff`** function.
 
 ### 2. Mart Layer: `model_mrt_driver_complaint`
-**Description:**  
-A reporting-ready table aggregated at the **Driver level**. It provides the high-level metrics needed to evaluate driver reliability and prioritize training resources.
-
 #### 📊 Metric Definitions & Requirement Mapping
-
 | Metric Name | Logic / Description | Required Insight Met |
 | :--- | :--- | :--- |
 | **baseline_rating** | Value from `sg_mst_drivers.driver_rating` | **Driver ratings before complaints**. |
@@ -150,16 +129,14 @@ A reporting-ready table aggregated at the **Driver level**. It provides the high
 
 ---
 
-## **Restaurant Quality Complaint Report**
+# 7️⃣ Restaurant Quality Complaint Report
 ### **1. Intermediate Layer: `model_int_restaurant_complaint`**
 **Description:** This model filters and prepares base data specifically for complaints associated with restaurants.
 
 *   **Primary Logic:** Filters data from **`sg_trn_support_tickets`** by selecting only `issue_type = 'food'`.
-*   **Duration Calculation:** Calculates **Resolution Time** using the `date_diff` function to find the difference between `opened_datetime` and `resolved_datetime` in minutes [16, 27, Conversation History].
 
 ### **2. Mart Layer: `model_mrt_restaurant_quality`**
 #### **📊 Metric Definitions & Requirement Mapping**
-
 | Metric Name | Logic / Description | Required Insight Met |
 | :--- | :--- | :--- |
 | **volume_of_complaints** | `COUNT(DISTINCT ticket_id)` | **Volume of complaints** linked to individual restaurants. |
@@ -169,7 +146,7 @@ A reporting-ready table aggregated at the **Driver level**. It provides the high
 | **customer_recovery_rate_30d_pct** | % of customers reordering within 30 days post-resolution | **Impact on repeat purchase behavior** from customers after issues. |
 
 
-## Driver Incentive Impact Report
+# 8️⃣ Driver Incentive Impact Report
 ### 1. Intermediate Layer: `model_int_driver_incentive_performance`
 **Description:**  
 This model enriches raw incentive logs with driver metadata and actual delivery performance data to evaluate behavior during active bonus periods.
@@ -191,7 +168,7 @@ This model enriches raw incentive logs with driver metadata and actual delivery 
 
 ---
 
-## **Retargeting Performance Report**
+# 9️⃣ Retargeting Performance Report
 ### **1. Intermediate Layer: `model_int_retargeting_attribution`**
 **Description:** This model acts as the core enrichment layer for retargeting activities. It identifies returning users and calculates the duration of their inactivity prior to re-engagement.
 
