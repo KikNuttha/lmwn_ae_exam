@@ -190,3 +190,24 @@ This model enriches raw incentive logs with driver metadata and actual delivery 
 | **qualification_rate_pct** | (Qualified Bonuses / Total Logs) * 100 | Effectiveness of the program in helping drivers **meet targets**. |
 
 ---
+
+## **Retargeting Performance Report**
+### **1. Intermediate Layer: `model_int_retargeting_attribution`**
+**Description:** This model acts as the core enrichment layer for retargeting activities. It identifies returning users and calculates the duration of their inactivity prior to re-engagement.
+
+*   **Primary Logic:** 
+    *   Filters the campaign master (**`sg_mst_campaign`**) for `campaign_type = 'retargeting'`.
+    *   Filters interaction logs (**`sg_log_camp_interac`**) for **`is_new_customer = FALSE`** to isolate existing users [8, Conversation History].
+
+### **2. Mart Layer: `model_mrt_retargeting_performance`**
+#### **📊 Metric Definitions & Requirement Mapping**
+| Metric Name | Logic / Description | Required Insight Met |
+| :--- | :--- | :--- |
+| **total_targeted_customers** | `COUNT(DISTINCT customer_id)` | **Number of previously active customers targeted** in each campaign. |
+| **returned_customers_count** | Count of distinct customers with a 'conversion' event | Number of users who successfully returned. |
+| **return_proportion_pct** | (Returned Customers / Total Targeted) * 100 | **Proportion who returned** and placed another order. |
+| **total_retargeted_revenue** | `SUM(revenue)` from conversion events | **Total spend generated** by retargeted customers. |
+| **avg_reengagement_gap_days**| `AVG(days_since_last_order)` | **Time gap between original and returning orders.** |
+| **avg_revenue_per_return** | Total Revenue / Returned Customers | Efficiency of spend per re-engaged user. |
+
+---
