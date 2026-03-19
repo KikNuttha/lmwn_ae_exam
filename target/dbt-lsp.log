@@ -1,0 +1,93 @@
+==================== 2026-03-19T15:56:58.510974Z | 765eda41-5218-4056-bb67-991f2256ce26 ====================
+15:56:58.511099 [info ]: Starting dbt LSP server
+15:56:58.511154 [info ]: Connecting to LSP client on port 8000
+15:56:58.513325 [info ]: Successfully connected to LSP client
+15:56:58.513347 [info ]: Creating LSP service...
+15:56:58.607799 [info ]: Creating LSP server...
+15:56:58.607830 [info ]: Starting LSP server...
+15:56:58.641399 [info ]: Loading profiles.yml
+15:57:02.545705 [info ]: Started loading project
+15:57:02.546483 [info ]: Loading profiles.yml
+15:57:02.554570 [debug]:    Started loading packages
+15:57:02.560993 [debug]:     Loaded [  0.01s] packages
+15:57:02.562535 [info ]: Started parsing
+15:57:02.607772 [info ]: Finished loading project [  0.06s]
+15:57:02.612327 [debug]: Finished parsing models\staging\sg_schema.yml [  0.00s]
+15:57:02.613003 [debug]: Finished parsing models\staging\source.yml [  0.00s]
+15:57:02.620386 [debug]: Finished parsing models\intermediate\model_int_complaint.sql [  0.00s]
+15:57:02.622115 [debug]: Finished parsing models\intermediate\model_int_customer_acquisition.sql [  0.00s]
+15:57:02.623342 [debug]: Finished parsing models\intermediate\model_int_delivery_zone.sql [  0.00s]
+15:57:02.624622 [debug]: Finished parsing models\intermediate\model_int_driver_complaint.sql [  0.00s]
+15:57:02.625769 [debug]: Finished parsing models\intermediate\model_int_driver_incentive.sql [  0.00s]
+15:57:02.626768 [debug]: Finished parsing models\intermediate\model_int_driver_order.sql [  0.00s]
+15:57:02.627474 [debug]: Finished parsing models\intermediate\model_int_marketing_attribution.sql [  0.00s]
+15:57:02.628362 [debug]: Finished parsing models\intermediate\model_int_restaurant_complaint.sql [  0.00s]
+15:57:02.629085 [debug]: Finished parsing models\intermediate\model_int_retargeting.sql [  0.00s]
+15:57:02.629862 [debug]: Finished parsing models\marts\model_mrt_campaign_effective.sql [  0.00s]
+15:57:02.630595 [debug]: Finished parsing models\marts\model_mrt_customer_acquisition.sql [  0.00s]
+15:57:02.631458 [debug]: Finished parsing models\marts\model_mrt_delivery_zone_heatmap.sql [  0.00s]
+15:57:02.632437 [debug]: Finished parsing models\marts\model_mrt_driver_complaint.sql [  0.00s]
+15:57:02.633349 [debug]: Finished parsing models\marts\model_mrt_driver_incentive.sql [  0.00s]
+15:57:02.634180 [debug]: Finished parsing models\marts\model_mrt_driver_performance.sql [  0.00s]
+15:57:02.635290 [debug]: Finished parsing models\marts\model_mrt_restaurant_quality.sql [  0.00s]
+15:57:02.636210 [debug]: Finished parsing models\marts\model_mrt_retargeting.sql [  0.00s]
+15:57:02.637063 [debug]: Finished parsing models\marts\model_mrt_total_complaint.sql [  0.00s]
+15:57:02.637890 [debug]: Finished parsing models\reports\report_campaign_effectiveness.sql [  0.00s]
+15:57:02.638971 [debug]: Finished parsing models\reports\report_customer_acquisition.sql [  0.00s]
+15:57:02.639768 [debug]: Finished parsing models\reports\report_delivery_zone_heatmap.sql [  0.00s]
+15:57:02.640728 [debug]: Finished parsing models\reports\report_driver_performance.sql [  0.00s]
+15:57:02.641507 [debug]: Finished parsing models\reports\report_retargeting_performance.sql [  0.00s]
+15:57:02.642641 [debug]: Finished parsing models\staging\model_sg_log_camp_interac.sql [  0.00s]
+15:57:02.643495 [debug]: Finished parsing models\staging\model_sg_log_cus_app_sessions.sql [  0.00s]
+15:57:02.644293 [debug]: Finished parsing models\staging\model_sg_log_driver_incentive.sql [  0.00s]
+15:57:02.645033 [debug]: Finished parsing models\staging\model_sg_log_order.sql [  0.00s]
+15:57:02.645934 [debug]: Finished parsing models\staging\model_sg_log_support_tickets.sql [  0.00s]
+15:57:02.646752 [debug]: Finished parsing models\staging\model_sg_mst_campaign.sql [  0.00s]
+15:57:02.647726 [debug]: Finished parsing models\staging\model_sg_mst_customers.sql [  0.00s]
+15:57:02.648407 [debug]: Finished parsing models\staging\model_sg_mst_drivers.sql [  0.00s]
+15:57:02.649331 [debug]: Finished parsing models\staging\model_sg_mst_restaurants.sql [  0.00s]
+15:57:02.650372 [debug]: Finished parsing models\staging\model_sg_trn_order.sql [  0.00s]
+15:57:02.672049 [warn ]: dbt1005: Unused schema.yml entry for model 'sg_log_camp_interac'
+  --> models\staging\sg_schema.yml
+15:57:02.672095 [debug]: Finished parsing models\staging\model_sg_trn_support_tickets.sql [  0.02s]
+15:57:02.672118 [warn ]: dbt1005: Unused schema.yml entry for model 'sg_log_cus_app_sessions'
+  --> models\staging\sg_schema.yml
+15:57:02.672139 [warn ]: dbt1005: Unused schema.yml entry for model 'sg_log_driver_incentive'
+  --> models\staging\sg_schema.yml
+15:57:02.672155 [warn ]: dbt1005: Unused schema.yml entry for model 'sg_log_order'
+  --> models\staging\sg_schema.yml
+15:57:02.672171 [warn ]: dbt1005: Unused schema.yml entry for model 'sg_log_support_tickets'
+  --> models\staging\sg_schema.yml
+15:57:02.672193 [warn ]: dbt1005: Unused schema.yml entry for model 'sg_mst_campaign'
+  --> models\staging\sg_schema.yml
+15:57:02.672208 [warn ]: dbt1005: Unused schema.yml entry for model 'sg_mst_customers'
+  --> models\staging\sg_schema.yml
+15:57:02.672229 [warn ]: dbt1005: Unused schema.yml entry for model 'sg_mst_drivers'
+  --> models\staging\sg_schema.yml
+15:57:02.672253 [warn ]: dbt1005: Unused schema.yml entry for model 'sg_mst_restaurants'
+  --> models\staging\sg_schema.yml
+15:57:02.672270 [warn ]: dbt1005: Unused schema.yml entry for model 'sg_trn_order'
+  --> models\staging\sg_schema.yml
+15:57:02.672290 [warn ]: dbt1005: Unused schema.yml entry for model 'sg_trn_support_tickets'
+  --> models\staging\sg_schema.yml
+15:57:02.675872 [info ]: Finished parsing [  0.11s]
+15:57:02.678441 [info ]: Cached model count updated: 34 models (estimate)
+15:57:02.678476 [info ]: Cached model count updated: 34 models (accurate)
+15:57:02.678675 [info ]: Started scheduling
+15:57:02.679390 [info ]: Finished scheduling [  0.00s]
+15:57:02.679445 [debug]: Compilation - 34 nodes selected: {"model.lmwn_ae_exam.model_int_complaint", "model.lmwn_ae_exam.model_int_customer_acquisition", "model.lmwn_ae_exam.model_int_delivery_zone", "model.lmwn_ae_exam.model_int_driver_complaint", "model.lmwn_ae_exam.model_int_driver_incentive", "model.lmwn_ae_exam.model_int_driver_order", "model.lmwn_ae_exam.model_int_marketing_attribution", "model.lmwn_ae_exam.model_int_restaurant_complaint", "model.lmwn_ae_exam.model_int_retargeting", "model.lmwn_ae_exam.model_mrt_campaign_effective", "model.lmwn_ae_exam.model_mrt_customer_acquisition", "model.lmwn_ae_exam.model_mrt_delivery_zone_heatmap", "model.lmwn_ae_exam.model_mrt_driver_complaint", "model.lmwn_ae_exam.model_mrt_driver_incentive", "model.lmwn_ae_exam.model_mrt_driver_performance", "model.lmwn_ae_exam.model_mrt_restaurant_quality", "model.lmwn_ae_exam.model_mrt_retargeting", "model.lmwn_ae_exam.model_mrt_total_complaint", "model.lmwn_ae_exam.model_sg_log_camp_interac", "model.lmwn_ae_exam.model_sg_log_cus_app_sessions", "model.lmwn_ae_exam.model_sg_log_driver_incentive", "model.lmwn_ae_exam.model_sg_log_order", "model.lmwn_ae_exam.model_sg_log_support_tickets", "model.lmwn_ae_exam.model_sg_mst_campaign", "model.lmwn_ae_exam.model_sg_mst_customers", "model.lmwn_ae_exam.model_sg_mst_drivers", "model.lmwn_ae_exam.model_sg_mst_restaurants", "model.lmwn_ae_exam.model_sg_trn_order", "model.lmwn_ae_exam.model_sg_trn_support_tickets", "model.lmwn_ae_exam.report_campaign_effectiveness", "model.lmwn_ae_exam.report_customer_acquisition", "model.lmwn_ae_exam.report_delivery_zone_heatmap", "model.lmwn_ae_exam.report_driver_performance", "model.lmwn_ae_exam.report_retargeting_performance"}
+15:57:02.679488 [info ]: Started scheduling
+15:57:02.679893 [info ]: Finished scheduling [  0.00s]
+15:57:02.680138 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "ae_exam_db", schema: "main", table: "campaign_interactions" }) and interval: None
+15:57:02.680225 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "ae_exam_db", schema: "main", table: "drivers_master" }) and interval: None
+15:57:02.680261 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "ae_exam_db", schema: "main", table: "campaign_master" }) and interval: None
+15:57:02.680289 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "ae_exam_db", schema: "main", table: "order_log_incentive_sessions_driver_incentive_logs" }) and interval: None
+15:57:02.680317 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "ae_exam_db", schema: "main", table: "restaurants_master" }) and interval: None
+15:57:02.680342 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "ae_exam_db", schema: "main", table: "order_transactions" }) and interval: None
+15:57:02.680366 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "ae_exam_db", schema: "main", table: "support_tickets" }) and interval: None
+15:57:02.680393 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "ae_exam_db", schema: "main", table: "order_log_incentive_sessions_order_status_logs" }) and interval: None
+15:57:02.680420 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "ae_exam_db", schema: "main", table: "customers_master" }) and interval: None
+15:57:02.680447 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "ae_exam_db", schema: "main", table: "order_log_incentive_sessions_customer_app_sessions" }) and interval: None
+15:57:02.680474 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "ae_exam_db", schema: "main", table: "support_ticket_status_logs" }) and interval: None
+15:57:02.682123 [info ]: Started downloading schemas
+15:57:02.969459 [info ]: Finished downloading schemas [  0.29s]
