@@ -167,3 +167,26 @@ A reporting-ready table aggregated at the **Driver level**. It provides the high
 | **total_compensation_issued** | `SUM(compensation_amount)` | **Total customer compensation** linked to each restaurant. |
 | **complaint_to_order_ratio_pct**| (Total Complaints / Total Orders) * 100 | **Ratio of complaints** to total orders from the restaurant. |
 | **customer_recovery_rate_30d_pct** | % of customers reordering within 30 days post-resolution | **Impact on repeat purchase behavior** from customers after issues. |
+
+
+## Driver Incentive Impact Report
+### 1. Intermediate Layer: `model_int_driver_incentive_performance`
+**Description:**  
+This model enriches raw incentive logs with driver metadata and actual delivery performance data to evaluate behavior during active bonus periods.
+
+*   **Primary Logic:**  
+    *   Aggregates daily performance from **`sg_trn_order`** to calculate the actual workload on the days incentives were applied [20, Conversation History].
+
+### 2. Mart Layer: `model_mrt_driver_incentive_impact`
+**Description:**  
+#### 📊 Metric Definitions & Requirement Mapping
+
+| Metric Name | Logic / Description | Required Insight Met |
+| :--- | :--- | :--- |
+| **total_drivers_participating** | `COUNT(DISTINCT driver_id)` | **Driver participation** in each incentive program. |
+| **total_bonus_payout** | `SUM(bonus_amount)` where `bonus_qualified = TRUE` | **Bonus amount paid out** to the fleet. |
+| **total_delivery_volume** | `SUM(orders_completed)` during active dates | **Volume of completed deliveries** during incentive periods. |
+| **avg_delivery_time_min** | `AVG(avg_delivery_duration_min)` | **Operational efficiency gains** (changes in delivery speed). |
+| **qualification_rate_pct** | (Qualified Bonuses / Total Logs) * 100 | Effectiveness of the program in helping drivers **meet targets**. |
+
+---
